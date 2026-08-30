@@ -6,112 +6,239 @@
   <title>GD Level Requests</title>
   <style>
     :root {
-      --bg-color: #121214;
-      --card-bg: #1a1a1e;
-      --border-color: #29292e;
-      --accent-color: #00f0ff;
+      --bg-color: #08080c;
+      --card-bg: #12131a;
+      --border-color: #ff0055;
+      --accent-cyan: #00f0ff;
+      --accent-pink: #ff0055;
       --text-color: #e1e1e6;
-      --subtext-color: #a8a8b3;
+      --subtext-color: #8a8a9e;
     }
 
     body {
       background-color: var(--bg-color);
       color: var(--text-color);
-      font-family: system-ui, -apple-system, sans-serif;
-      max-width: 800px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 850px;
       margin: 0 auto;
       padding: 20px;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       box-sizing: border-box;
+      background-image: radial-gradient(circle at 50% 0%, #1a002b 0%, #08080c 70%);
     }
 
     header {
       text-align: center;
       margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     h1 {
-      color: var(--accent-color);
+      color: var(--accent-cyan);
       margin-bottom: 8px;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.7), 0 0 20px rgba(0, 240, 255, 0.4);
+      font-size: 2.5rem;
     }
 
     .description {
-      color: var(--subtext-color);
+      color: var(--accent-pink);
       font-size: 1.1rem;
       margin: 0;
+      text-shadow: 0 0 8px rgba(255, 0, 85, 0.6);
+      font-weight: bold;
     }
 
-    .video-container {
-      width: 100%;
+    /* Video & Teaser Wrapper */
+    .video-wrapper {
       background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
+      border: 2px solid var(--accent-cyan);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+      border-radius: 4px;
       overflow: hidden;
       margin-bottom: 30px;
+      position: relative;
     }
 
-    video {
+    .teaser-box {
       width: 100%;
-      display: block;
+      height: 220px;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
     }
 
-    .comments-section {
+    .glitch-text {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--accent-cyan);
+      text-shadow: 0 0 10px var(--accent-cyan);
+      letter-spacing: 3px;
+    }
+
+    .teaser-box p {
+      color: var(--accent-pink);
+      margin-top: 8px;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      font-weight: bold;
+    }
+
+    .video-controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 12px 16px;
+      background: #0d0e14;
+      flex-wrap: wrap;
+    }
+
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent-cyan);
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .volume-control input[type=range] {
+      accent-color: var(--accent-cyan);
+      cursor: pointer;
+    }
+
+    .video-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .cyber-btn {
+      background: transparent;
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      padding: 8px 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+      text-shadow: 0 0 5px var(--accent-cyan);
+      box-shadow: inset 0 0 5px rgba(0, 240, 255, 0.2);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cyber-btn:hover {
+      background: var(--accent-cyan);
+      color: #000;
+      box-shadow: 0 0 12px var(--accent-cyan);
+      text-shadow: none;
+    }
+
+    .cyber-btn.pink {
+      border-color: var(--accent-pink);
+      color: var(--accent-pink);
+      text-shadow: 0 0 5px var(--accent-pink);
+    }
+
+    .cyber-btn.pink:hover {
+      background: var(--accent-pink);
+      color: #fff;
+      box-shadow: 0 0 12px var(--accent-pink);
+    }
+
+    /* Cyber Card Styling */
+    .cyber-section {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
-      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 0, 85, 0.2);
       padding: 20px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+    }
+
+    .cyber-section h3 {
+      color: var(--accent-pink);
+      margin-top: 0;
+      text-shadow: 0 0 8px var(--accent-pink);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .comment-form {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-bottom: 24px;
     }
 
     input, textarea {
-      background: var(--bg-color);
-      border: 1px solid var(--border-color);
+      background: #090a0f;
+      border: 1px solid #29293d;
       color: #fff;
       padding: 12px;
-      border-radius: 6px;
+      border-radius: 2px;
       font-family: inherit;
       font-size: 0.95rem;
+      transition: border-color 0.2s;
     }
 
     input:focus, textarea:focus {
-      outline: 1px solid var(--accent-color);
+      outline: none;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
     }
 
     button.submit-btn {
-      background: var(--accent-color);
-      color: #000;
+      background: var(--accent-pink);
+      color: #fff;
       border: none;
       padding: 12px;
-      border-radius: 6px;
       font-weight: bold;
       cursor: pointer;
       font-size: 1rem;
-      transition: background 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+      box-shadow: 0 0 10px rgba(255, 0, 85, 0.4);
     }
 
     button.submit-btn:hover {
-      background: #70f8ff;
+      background: #ff3377;
+      box-shadow: 0 0 15px rgba(255, 0, 85, 0.8);
     }
 
     .comments-list {
       display: flex;
       flex-direction: column;
       gap: 16px;
+      margin-top: 20px;
     }
 
     .comment-card {
-      background: var(--bg-color);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
+      background: #090a0f;
+      border: 1px solid #1f1f2e;
+      border-left: 3px solid var(--accent-cyan);
       padding: 14px;
       display: flex;
       gap: 12px;
@@ -120,9 +247,9 @@
     .avatar {
       width: 44px;
       height: 44px;
-      border-radius: 50%;
+      border-radius: 4px;
       object-fit: cover;
-      background: var(--border-color);
+      border: 1px solid var(--accent-cyan);
       flex-shrink: 0;
     }
 
@@ -139,31 +266,13 @@
 
     .username {
       font-weight: bold;
-      color: #fff;
+      color: var(--accent-cyan);
     }
 
     .comment-text {
       margin: 0 0 10px 0;
-      color: var(--subtext-color);
+      color: var(--text-color);
       word-break: break-word;
-    }
-
-    .like-btn {
-      background: transparent;
-      border: 1px solid var(--border-color);
-      color: #ff4d4d;
-      padding: 4px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: background 0.2s;
-    }
-
-    .like-btn:hover {
-      background: rgba(255, 77, 77, 0.1);
     }
 
     footer {
@@ -176,13 +285,14 @@
     }
 
     footer a {
-      color: var(--accent-color);
+      color: var(--accent-cyan);
       text-decoration: none;
       margin-left: 6px;
+      font-weight: bold;
     }
 
     footer a:hover {
-      text-decoration: underline;
+      text-shadow: 0 0 8px var(--accent-cyan);
     }
   </style>
 </head>
@@ -193,15 +303,40 @@
     <p class="description">Wait until September 19 for the results</p>
   </header>
 
-  <div class="video-container">
-    <video controls poster="">
-      <source src="LevelReq.mp4" type="video/mp4">
-      Twoja przeglądarka nie wspiera odtwarzacza wideo.
-    </video>
+  <div class="video-wrapper">
+    <div class="teaser-box">
+      <div class="glitch-text">🔒 VIDEO LOCKED</div>
+      <p>REVEALS ON SEPTEMBER 19</p>
+    </div>
+    <div class="video-controls-bar">
+      <div class="volume-control">
+        <span>🔊 VOL</span>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="1">
+      </div>
+      <div class="video-actions">
+        <button class="cyber-btn pink" id="like-video-btn">
+          ❤️ LIKE VIDEO (<span id="video-like-count">0</span>)
+        </button>
+        <a href="LevelReq.mp4" download="LevelReq.mp4" class="cyber-btn">
+          💾 DOWNLOAD
+        </a>
+      </div>
+    </div>
   </div>
 
-  <section class="comments-section">
-    <h3 style="margin-top: 0;">Submit Request / Comment</h3>
+  <section class="cyber-section">
+    <h3>Submit Level ID</h3>
+    <form class="comment-form" id="level-submit-form">
+      <div class="form-grid">
+        <input type="text" id="level-username" placeholder="Username" required>
+        <input type="text" id="level-id" placeholder="9-Digit Level ID (e.g. )" maxlength="9" pattern="\d{9}" title="Must be exactly 9 digits" required>
+      </div>
+      <button type="submit" class="submit-btn" style="background: var(--accent-cyan); color: #000;">Submit Level ID</button>
+    </form>
+  </section>
+
+  <section class="cyber-section">
+    <h3>Comments & Discussions</h3>
     
     <form class="comment-form" id="comment-form">
       <input type="text" id="username" placeholder="Username (Optional, defaults to Anonymous)">
@@ -232,11 +367,9 @@
       increment 
     } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    // Firebase Config pointing to bebechchat
     const firebaseConfig = {
       projectId: "bebechchat",
       authDomain: "bebechchat.firebaseapp.com",
-      // Add your apiKey here from Firebase Console if needed for client writes
       apiKey: "YOUR_FIREBASE_API_KEY" 
     };
 
@@ -244,11 +377,64 @@
     const db = getFirestore(app);
 
     const commentsCol = collection(db, "comments");
-    const likesCol = collection(db, "comments", "likes", "counts"); // Subpath /comments/likes/
+    const likesCol = collection(db, "comments", "likes", "counts");
+    const videoStatsDoc = doc(db, "video_stats", "main_video");
 
-    const DEFAULT_AVATAR = "https://i.imgur.com/6VBx3io.png"; // Fallback GD-style avatar
+    const DEFAULT_AVATAR = "https://i.imgur.com/6VBx3io.png";
 
-    // Real-time updates for comments
+    // Real-time Video Likes listener
+    onSnapshot(videoStatsDoc, (snap) => {
+      const countSpan = document.getElementById("video-like-count");
+      if (snap.exists()) {
+        countSpan.innerText = snap.data().likes || 0;
+      }
+    });
+
+    // Video Like Button Click
+    document.getElementById("like-video-btn").addEventListener("click", async () => {
+      await setDoc(videoStatsDoc, { likes: increment(1) }, { merge: true });
+    });
+
+    // Submit Level ID Form (Posts directly into comments feed)
+    document.getElementById("level-submit-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      const username = document.getElementById("level-username").value.trim();
+      const levelId = document.getElementById("level-id").value.trim();
+
+      if (!username || !levelId) return;
+
+      await addDoc(commentsCol, {
+        username: username,
+        pfp: "",
+        text: `Level Request: ${levelId}`,
+        createdAt: serverTimestamp()
+      });
+
+      document.getElementById("level-submit-form").reset();
+    });
+
+    // Submit Regular Comment Form
+    document.getElementById("comment-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      const username = document.getElementById("username").value.trim();
+      const pfp = document.getElementById("pfp").value.trim();
+      const text = document.getElementById("comment-text").value.trim();
+
+      if (!text) return;
+
+      await addDoc(commentsCol, {
+        username: username,
+        pfp: pfp,
+        text: text,
+        createdAt: serverTimestamp()
+      });
+
+      document.getElementById("comment-form").reset();
+    });
+
+    // Real-time comments renderer
     const q = query(commentsCol, orderBy("createdAt", "desc"));
     
     onSnapshot(q, (snapshot) => {
@@ -270,7 +456,7 @@
           <div class="comment-content">
             <div class="comment-header">
               <span class="username">${escapeHtml(author)}</span>
-              <button class="like-btn" onclick="likeComment('${commentId}')">
+              <button class="cyber-btn pink" onclick="likeComment('${commentId}')">
                 ❤️ <span id="like-count-${commentId}">0</span>
               </button>
             </div>
@@ -279,7 +465,7 @@
         `;
         list.appendChild(card);
 
-        // Listen for real-time likes in /comments/likes/
+        // Comment likes listener
         onSnapshot(doc(likesCol, commentId), (likeSnap) => {
           const countSpan = document.getElementById(`like-count-${commentId}`);
           if (countSpan) {
@@ -289,27 +475,6 @@
       });
     });
 
-    // Form Submission
-    document.getElementById("comment-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      
-      const username = document.getElementById("username").value.trim();
-      const pfp = document.getElementById("pfp").value.trim();
-      const text = document.getElementById("comment-text").value.trim();
-
-      if (!text) return;
-
-      await addDoc(commentsCol, {
-        username: username,
-        pfp: pfp,
-        text: text,
-        createdAt: serverTimestamp()
-      });
-
-      document.getElementById("comment-form").reset();
-    });
-
-    // Global like function targeted to /comments/likes/
     window.likeComment = async function(commentId) {
       const likeRef = doc(likesCol, commentId);
       await setDoc(likeRef, { count: increment(1) }, { merge: true });
